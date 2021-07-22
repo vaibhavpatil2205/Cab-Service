@@ -15,7 +15,16 @@ public class CabServiceTest {
 		double totalFare = cabservice.invoiceGenerator(distance, time);
 		assertEquals(115.0, totalFare, 0.0);
 		
-		
-	}
+		}
+	
+	 @Test
+	 public void testInvoiceGeneratorShouldReturnDefaultFare() {
+		 
+		 Cabservice cabservice = new Cabservice();
+		 double distance = 4;
+		 int time = 10;
+		 double totalFare = cabservice.invoiceGenerator(distance, time);
+		 assertEquals(50.0, totalFare, 0.0);
+	 }
 
 }
