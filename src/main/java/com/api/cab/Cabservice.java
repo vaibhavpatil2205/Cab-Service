@@ -1,17 +1,28 @@
 package com.api.cab;
+import java.util.List;
 
 public class Cabservice {
-	
-public double invoiceGenerator(double distance, int time) {
-		double totalFare = 0.0;
-		if(distance < 5.0 && time <= 10) {
-			totalFare = 50.0;
-			
-		} else{ 
-		
-		    totalFare = distance*10 + time;
-		}
-		return totalFare;
-	}
- }
+    private static final double COST_PER_KM = 10 ;
+    private static final int COST_PER_MIN =1 ;
+    private static int  MIN_FARE= 5;
+
+    public double invoiceGenerator(double distance, int time) {
+        double totalFare = 0.0;
+        totalFare = distance * COST_PER_KM + time * COST_PER_MIN;
+        if( totalFare < MIN_FARE){
+            totalFare=5;
+        }
+        return totalFare ;
+    }
+
+    public double invoiceGenerator(List<Ride> rides) {
+        double totalFare=0;
+        for (Ride ride : rides){
+            totalFare += this.invoiceGenerator(ride.distance,ride.time);
+            }
+
+        return totalFare;
+    }
+
+}
 
