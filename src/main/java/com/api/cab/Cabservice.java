@@ -1,4 +1,5 @@
 package com.api.cab;
+
 import java.util.List;
 
 public class Cabservice {
@@ -15,14 +16,12 @@ public class Cabservice {
         return totalFare ;
     }
 
-    public double invoiceGenerator(List<Ride> rides) {
+    public InvoiceSummary invoiceGenerator(List<Ride> rides) {
         double totalFare=0;
         for (Ride ride : rides){
             totalFare += this.invoiceGenerator(ride.distance,ride.time);
             }
-
-        return totalFare;
+//       double totalFare =(double) rides.stream().map(this :: invoiceGenerator);
+        return new InvoiceSummary(rides.size(), totalFare);
     }
-
 }
-
